@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivek | Product & Project Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: rgba(15, 25, 45, 0.7);
+      --card: rgba(16, 24, 40, 0.72);
+      --border: rgba(255,255,255,0.08);
+      --primary: #60a5fa;
+      --secondary: #22d3ee;
+      --text: #f8fafc;
+      --muted: #9ca3af;
+      --success: #4ade80;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top right, rgba(96,165,250,0.18), transparent 22%),
+                  radial-gradient(circle at bottom left, rgba(34,211,238,0.15), transparent 28%),
+                  var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      pointer-events: none;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 80px 0 50px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .glass {
+      background: var(--card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(34,211,238,0.15), transparent 65%);
+      right: -100px;
+      top: -100px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(96,165,250,0.25);
+      background: rgba(96,165,250,0.08);
+      color: var(--secondary);
+      font-size: 13px;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 7vw, 5rem);
+      line-height: 1;
+      margin-bottom: 18px;
+      font-weight: 800;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 90%;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 35px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #03111f;
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.12);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(96,165,250,0.15);
+    }
+
+    .profile-panel {
+      padding: 28px;
+      position: relative;
+    }
+
+    .profile-circle {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      margin: auto;
+      background: linear-gradient(135deg, rgba(96,165,250,0.18), rgba(34,211,238,0.08));
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-circle::before {
+      content: "V";
+      font-size: 7rem;
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .orbit {
+      position: absolute;
+      border: 1px dashed rgba(255,255,255,0.15);
+      border-radius: 50%;
+      animation: rotate 12s linear infinite;
+    }
+
+    .orbit.one {
+      width: 280px;
+      height: 280px;
+    }
+
+    .orbit.two {
+      width: 340px;
+      height: 340px;
+      animation-direction: reverse;
+      animation-duration: 18s;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .stats {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+
+    .stat-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .stat-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
+
+    .stat-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 40px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      padding: 28px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .card small {
+      color: var(--secondary);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .card p, li {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .skill-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .skill {
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: rgba(96,165,250,0.08);
+      border: 1px solid rgba(96,165,250,0.15);
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+    }
+
+    .skill:hover {
+      transform: translateY(-3px);
+      background: rgba(34,211,238,0.12);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 2px;
+      height: calc(100% - 20px);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding-left: 24px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 7px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 0 18px rgba(34,211,238,0.5);
+    }
+
+    .footer {
+      padding: 60px 0 30px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .floating-blur {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.18;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .blur-1 {
+      background: #2563eb;
+      top: -120px;
+      left: -150px;
+    }
+
+    .blur-2 {
+      background: #06b6d4;
+      bottom: -180px;
+      right: -120px;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: var(--success);
+      font-size: 0.95rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 12px var(--success);
+    }
+
+    @media(max-width: 900px) {
+      .hero-grid,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .profile-panel {
+        padding: 30px;
+      }
+
+      .hero p {
+        max-width: 100%;
+      }
+
+      .profile-circle {
+        width: 200px;
+        height: 200px;
+      }
+
+      .orbit.one {
+        width: 240px;
+        height: 240px;
+      }
+
+      .orbit.two {
+        width: 280px;
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-blur blur-1"></div>
+  <div class="floating-blur blur-2"></div>
+
+  <main class="container">
+
+    <section class="hero">
+      <div class="hero-grid">
+
+        <div class="hero-card glass">
+          <div class="tag">AI-Driven Product Leadership</div>
+
+          <h1>
+            Vivek <br>
+            <span class="gradient">Product & Project Manager</span>
+          </h1>
+
+          <p>
+            Strategic product thinker focused on translating business goals into scalable digital experiences.
+            Experienced in PRD creation, agile delivery, stakeholder alignment, roadmap planning, and cross-functional execution.
+            Passionate about combining product strategy, systems thinking, and execution excellence.
+          </p>
+
+          <div class="availability">
+            <span class="dot"></span>
+            Open for Product Leadership & Digital Transformation Roles
+          </div>
+
+          <div class="cta-row">
+            <a href="#experience" class="btn btn-primary">Explore Experience</a>
+            <a href="#contact" class="btn btn-secondary">Connect</a>
+          </div>
+        </div>
+
+        <div class="profile-panel glass">
+          <div class="profile-circle">
+            <div class="orbit one"></div>
+            <div class="orbit two"></div>
+          </div>
+
+          <div class="stats">
+            <div class="stat-card">
+              <h3 id="years">0</h3>
+              <p>Years Building Products</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 id="projects">0</h3>
+              <p>Cross Functional Initiatives</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 id="prd">0</h3>
+              <p>Product Requirement Docs</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 id="teams">0</h3>
+              <p>Teams Coordinated</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Core Expertise</h2>
+        <span>Execution + Strategy + Delivery</span>
+      </div>
+
+      <div class="glass card">
+        <div class="skill-wrap">
+          <div class="skill">Product Strategy</div>
+          <div class="skill">PRD Writing</div>
+          <div class="skill">Agile & Scrum</div>
+          <div class="skill">Roadmap Planning</div>
+          <div class="skill">Stakeholder Management</div>
+          <div class="skill">Requirement Analysis</div>
+          <div class="skill">Feature Prioritization</div>
+          <div class="skill">Sprint Planning</div>
+          <div class="skill">Team Coordination</div>
+          <div class="skill">UX Collaboration</div>
+          <div class="skill">Process Optimization</div>
+          <div class="skill">Research & Discovery</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-title">
+        <h2>Professional Journey</h2>
+        <span>Focused on scalable delivery systems</span>
+      </div>
+
+      <div class="grid-2">
+
+        <div class="glass card timeline">
+
+          <div class="timeline-item">
+            <h3>Product & Project Management</h3>
+            <small>Strategic Delivery Leadership</small>
+            <p>
+              Led requirement gathering, sprint coordination, feature planning, and execution workflows across multiple digital initiatives.
+              Worked closely with engineering, QA, and business stakeholders to streamline delivery cycles.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <h3>PRD & Workflow Architecture</h3>
+            <small>Documentation & Product Thinking</small>
+            <p>
+              Built structured PRDs, opportunity analysis frameworks, persona definitions, and operational workflows to improve product clarity and execution quality.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <h3>Agile Operations</h3>
+            <small>Cross Functional Collaboration</small>
+            <p>
+              Facilitated grooming sessions, sprint planning, estimation alignment, and dependency management while improving visibility across product teams.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="glass card">
+          <h3>Profile Summary</h3>
+          <small>Future-ready product professional</small>
+
+          <p style="margin-bottom: 18px;">
+            I operate at the intersection of business strategy, execution discipline, and product innovation.
+            My approach combines structured thinking with modern product methodologies to create scalable and efficient delivery systems.
+          </p>
+
+          <ul style="padding-left: 18px; display:flex; flex-direction:column; gap:14px;">
+            <li>Strong experience collaborating with engineering and QA teams</li>
+            <li>Focused on clarity-first documentation and stakeholder communication</li>
+            <li>Passionate about AI-enabled workflows and modern product systems</li>
+            <li>Experienced in converting ambiguous ideas into executable roadmaps</li>
+            <li>Comfortable leading discussions across business and technical teams</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Execution Principles</h2>
+        <span>How I approach product building</span>
+      </div>
+
+      <div class="grid-2">
+
+        <div class="glass card">
+          <h3>Product Thinking</h3>
+          <small>Discovery to Delivery</small>
+          <p>
+            Prioritize customer value, align teams with measurable goals, and build systems that scale.
+            Strong emphasis on documentation clarity, execution visibility, and iterative delivery.
+          </p>
+        </div>
+
+        <div class="glass card">
+          <h3>Leadership Style</h3>
+          <small>Collaborative & Outcome Oriented</small>
+          <p>
+            Encourage ownership, foster alignment between teams, and maintain a high-clarity execution environment.
+            Focused on removing blockers and accelerating delivery momentum.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <span>Let's build impactful products</span>
+      </div>
+
+      <div class="glass card" style="text-align:center; padding: 50px 30px;">
+        <h3 style="font-size:2rem; margin-bottom:12px;">Open to opportunities & collaborations</h3>
+        <p style="max-width:700px; margin:auto; margin-bottom:24px;">
+          Add your email, LinkedIn, portfolio, and contact details here before using the resume publicly.
+          You can also replace the placeholder metrics with your actual achievements.
+        </p>
+
+        <div class="cta-row" style="justify-content:center;">
+          <a class="btn btn-primary" href="#">LinkedIn</a>
+          <a class="btn btn-secondary" href="#">Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Designed with a futuristic glassmorphism UI • Single File Resume • HTML + CSS + JavaScript
+    </div>
+
+  </main>
+
+  <script>
+    const animateValue = (id, end, duration) => {
+      const element = document.getElementById(id);
+      let start = 0;
+      const increment = end / (duration / 16);
+
+      const counter = setInterval(() => {
+        start += increment;
+
+        if(start >= end) {
+          start = end;
+          clearInterval(counter);
+        }
+
+        element.innerText = Math.floor(start) + '+';
+      }, 16);
+    }
+
+    window.addEventListener('load', () => {
+      animateValue('years', 4, 1200);
+      animateValue('projects', 20, 1500);
+      animateValue('prd', 35, 1700);
+      animateValue('teams', 8, 1400);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+
+      document.querySelector('.blur-1').style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+      document.querySelector('.blur-2').style.transform = `translate(-${x * 30}px, -${y * 30}px)`;
+    });
+  </script>
+
+</body>
+</html>
